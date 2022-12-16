@@ -1,21 +1,18 @@
-import { BrowserRouter, NavLink, Link, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Layout from './module/Layout';
+import UserList from './module/User/UserList';
+import UserForm from './module/User/UserForm';
 
 function App() {
   return (
     <BrowserRouter>
-    <nav style={{width: 200, display: "flex", justifyContent: "space-evenly"}}>
-      <NavLink to="/" end>Dashboard</NavLink>
-      <NavLink to="/list">List</NavLink>
-      <NavLink to="/add">Add</NavLink>
-    </nav>
         <Routes>
-            <Route path="/" element={<>This is home page</>}></Route>
-            <Route path="/list" element={<>This is list page</>}></Route>
-            <Route path="/add" element={<>This is add page</>}></Route>
+            <Route path="/" element={<Layout />}>   
+            <Route index element={<UserList />}></Route>
+            <Route path="/add" element={<UserForm />}></Route>
+            </Route> 
         </Routes>
-        {/* <Layout /> */}
     </BrowserRouter>
   ); 
 }

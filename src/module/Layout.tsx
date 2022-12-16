@@ -1,4 +1,6 @@
 import Style from './LayoutStyle.module.css'
+import GlobalNav from './GlobalNav'
+import { Outlet } from 'react-router-dom'
 
 const Layout = () => {
     return <>
@@ -9,7 +11,10 @@ const Layout = () => {
         </article>
 
         <section className={Style["content-section"]}>
-            <div>This is section</div>
+            <GlobalNav />
+            <main>
+                <Outlet />
+            </main>
         </section>
     </>
 }
