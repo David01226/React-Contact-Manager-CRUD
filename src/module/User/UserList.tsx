@@ -1,13 +1,21 @@
-import { useAppSelector } from "../../app/hooks";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { RootState } from "../../app/store";
 import { ApiStatus, IUser } from "./User.type";
+import { getUserListAction } from "./UserSlice";
 
 const UserList = () => {
 
     const { list, listStatus } = useAppSelector((state: RootState) => state.user);
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(getUserListAction());
+    }, [])
 
     return (
         <table>
+            <tbody>
             <tr>
                 <th>Sr. No</th>
                 <th>Name</th>
@@ -32,9 +40,7 @@ const UserList = () => {
                         </tr>
                     );
                 }) }
-
-            
-            
+            </tbody> 
         </table>
     );
 };
