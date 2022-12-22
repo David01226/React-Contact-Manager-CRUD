@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { RootState } from "../../app/store";
-import { Modal } from "../../components/input/Modal";
+import { Modal } from "../../components/Modal";
 import { ApiStatus, IUser } from "./User.type";
 import { deleteUserAction, getUserListAction } from "./UserSlice";
 import { useNavigate } from 'react-router-dom';

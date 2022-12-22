@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { toastError, toastSuccess } from "../../components/ToastifyConfig";
 import { ApiStatus, IUpdateUserActionProps, IUserForm, IUserState } from "./User.type";
 import { createUserApi, deleteUserApi, getUserListApi, updateUserApi } from "./UserService";
 
@@ -69,15 +70,18 @@ const userSlice = createSlice({
         });
         builder.addCase(createUserAction.fulfilled, (state) => {
             state.createUserFormStatus = ApiStatus.success;
+            toastSuccess("User created");
         });
         builder.addCase(createUserAction.rejected, (state) => {
             state.createUserFormStatus = ApiStatus.error;
+            toastError("Error while creating user");
         });
 
 
         builder.addCase(deleteUserAction.fulfilled, (state, action) => {
             const newList = state.list.filter((x) => x.id !== action.payload);
             state.list = newList
+            toastSuccess("User deleted")
         });
 
 
@@ -86,9 +90,11 @@ const userSlice = createSlice({
         });
         builder.addCase(updateUserAction.fulfilled, (state) => {
             state.updateUserFormStatus = ApiStatus.ideal
+            toastSuccess("User updated")
         });
         builder.addCase(updateUserAction.rejected, (state) => {
             state.updateUserFormStatus = ApiStatus.error
+            toastError("Error while updating user")
         });
 
     }

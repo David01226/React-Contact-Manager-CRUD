@@ -1,6 +1,8 @@
 import Style from './LayoutStyle.module.css'
 import GlobalNav from './GlobalNav'
 import { Outlet } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 const Layout = () => {
     return <>
@@ -12,10 +14,11 @@ const Layout = () => {
 
         <section className={Style["content-section"]}>
             <GlobalNav />
-            <main>
+            <main className={Style["main-content"]}>
                 <Outlet />
             </main>
         </section>
+        <ToastContainer />
     </>
 }
 

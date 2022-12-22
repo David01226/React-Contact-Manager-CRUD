@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { RootState } from '../../app/store';
 import { Input } from '../../components/input';
+import { toastError } from '../../components/ToastifyConfig';
 import { ApiStatus, IUpdateUserActionProps, IUserForm } from './User.type';
 import Style from './UserFormStyle.module.css';
 import { createUserAction, resetCreateListStatus, updateUserAction } from './UserSlice';
@@ -40,13 +41,18 @@ const UserForm = (props: IProps) => {
 
         const data : IUserForm = { name, email};
 
-        if(isEditForm) {
-            const dirtyFormData : IUpdateUserActionProps = {id:userIdToEdit.current, data}
-            dispatch(updateUserAction(dirtyFormData))
+        if(name && email) {
+            if(isEditForm) {
+                const dirtyFormData : IUpdateUserActionProps = {id:userIdToEdit.current, data}
+                dispatch(updateUserAction(dirtyFormData))
+            } else {
+                const data : IUserForm = { name, email};
+                dispatch(createUserAction(data));
+            } 
         } else {
-            const data : IUserForm = { name, email};
-            dispatch(createUserAction(data));
-        } 
+            toastError("Please fill out the form")
+        }
+        
     };
 
 

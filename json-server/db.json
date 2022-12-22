@@ -1,19 +1,19 @@
 {
   "user": [
     {
-      "id": 1,
-      "name": "John",
-      "email": "john@gmail.com"
+      "name": "First",
+      "email": "first@gmail.com",
+      "id": 1
     },
     {
-      "name": "David1",
-      "email": "David@gmail.com",
+      "name": "Second",
+      "email": "second@gmail.com",
+      "id": 2
+    },
+    {
+      "name": "Third",
+      "email": "third@gmail.com",
       "id": 3
-    },
-    {
-      "name": "dummy12",
-      "email": "dummy1@gmail.com",
-      "id": 4
     }
   ]
 }
