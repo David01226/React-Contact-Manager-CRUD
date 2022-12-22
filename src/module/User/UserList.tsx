@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { RootState } from "../../app/store";
 import { Modal } from "../../components/input/Modal";
 import { ApiStatus, IUser } from "./User.type";
-import { getUserListAction } from "./UserSlice";
+import { deleteUserAction, getUserListAction } from "./UserSlice";
 
 const UserList = () => {
 
@@ -43,7 +43,7 @@ const UserList = () => {
                                     <div>
                                         <input type="button" value="View" onClick={() => {setUserDataToView(user);}}/>
                                         <input type="button" value="Edit" />
-                                        <input type="button" value="Delete" />
+                                        <input type="button" value="Delete" onClick={() => {dispatch(deleteUserAction(user.id));}}/>
                                     </div>
                                 </td>
                                 
