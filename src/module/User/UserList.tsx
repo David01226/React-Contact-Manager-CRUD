@@ -4,12 +4,15 @@ import { RootState } from "../../app/store";
 import { Modal } from "../../components/input/Modal";
 import { ApiStatus, IUser } from "./User.type";
 import { deleteUserAction, getUserListAction } from "./UserSlice";
+import { useNavigate } from 'react-router-dom';
 
 const UserList = () => {
 
     const [userDataToView, setUserDataToView] = useState<IUser | null>(null);
     const { list, listStatus } = useAppSelector((state: RootState) => state.user);
     const dispatch = useAppDispatch()
+
+    const navigator = useNavigate();
 
     useEffect(() => {
         dispatch(getUserListAction());
@@ -42,7 +45,7 @@ const UserList = () => {
                                 <td>
                                     <div>
                                         <input type="button" value="View" onClick={() => {setUserDataToView(user);}}/>
-                                        <input type="button" value="Edit" />
+                                        <input type="button" value="Edit" onClick={() => {navigator(`/edit/${user.id}`)}}/>
                                         <input type="button" value="Delete" onClick={() => {dispatch(deleteUserAction(user.id));}}/>
                                     </div>
                                 </td>

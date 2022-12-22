@@ -1,25 +1,54 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { RootState } from '../../app/store';
 import { Input } from '../../components/input';
-import { ApiStatus, IUserForm } from './User.type';
+import { ApiStatus, IUpdateUserActionProps, IUserForm } from './User.type';
 import Style from './UserFormStyle.module.css';
-import { createUserAction, resetCreateListStatus } from './UserSlice';
+import { createUserAction, resetCreateListStatus, updateUserAction } from './UserSlice';
 
-const UserForm = () => {
+interface IProps {
+    isEditForm? : boolean
+}
 
+const UserForm = (props: IProps) => {
+
+    const { isEditForm } = props
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
 
-    const { createUserFormStatus } = useAppSelector((state: RootState) => state.user)
+    const params = useParams();
+    const userIdToEdit = useRef(parseInt(params.id || ""))
+
+    const { list } = useAppSelector((state: RootState) => state.user);
+    useEffect(() => {
+        if(isEditForm && userIdToEdit.current) {
+            const userData = list.filter(x => x.id === userIdToEdit.current)
+
+            if (userData.length) {
+                setName(userData[0].name);
+                setEmail(userData[0].email);
+            }
+        }
+    }, [isEditForm])
+
+    const { createUserFormStatus, updateUserFormStatus } = useAppSelector((state: RootState) => state.user)
     const dispatch = useAppDispatch();
 
     const onSubmitForm = (e: React.FormEvent) => {
         e.preventDefault();
 
         const data : IUserForm = { name, email};
-        dispatch(createUserAction(data));
+
+        if(isEditForm) {
+            const dirtyFormData : IUpdateUserActionProps = {id:userIdToEdit.current, data}
+            dispatch(updateUserAction(dirtyFormData))
+        } else {
+            const data : IUserForm = { name, email};
+            dispatch(createUserAction(data));
+        } 
     };
+
 
     useEffect(() => {
         if (createUserFormStatus === ApiStatus.success) {
@@ -42,7 +71,15 @@ const UserForm = () => {
                 }} />
 
                 <div className={Style["btn-wrapper"]}>
-                    <input type="submit" value="Create" />
+                    <input 
+                        type="submit" 
+                        value={isEditForm ? "Update" : "Create"} 
+                        disabled={
+                            createUserFormStatus === ApiStatus.loading || 
+                            updateUserFormStatus === ApiStatus.loading
+                        }
+                    />
+                    
                 </div>
 
             </form>
