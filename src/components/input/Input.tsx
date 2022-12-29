@@ -5,22 +5,24 @@ export interface IProps {
     label : string;
     value : string;
     type? : string;
+    placeholder? : string;
     onChange : (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const Input = (props: IProps) => {
-    const { label, value, type, onChange } = props;
+    const { label, value, type, placeholder, onChange } = props;
     return (
         <div className={Style.container }>
             <label>{label} : </label>
-            <div>
+
                 <input
+                    placeholder={placeholder}
                     type={type} 
                     value={value} 
                     className={Style.input} 
                     onChange={onChange} 
                 />
-            </div>
+
         </div>
     );
 };

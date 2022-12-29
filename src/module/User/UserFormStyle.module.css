@@ -1,21 +1,58 @@
 .container {
     display: flex;
     justify-content: center;
+    background-color: white;
+    width: 80%;
+    max-width: 785px;
+    height: 653px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-img {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.edit-profile-img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    cursor: pointer;
 }
 
 .form {
-    width: 400px;
+    width: 55%;
 }
 
 .btn-wrapper {
-    float: right;
     margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 50px 0 30px 0;
 }
 
-input[type="submit"],
-input[type="button"] {
-    height: 30px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-left: 5px;
+input[type="submit"] {
+    font-size: 17px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    background-color: #20D520;
+    font-weight: 500;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 2px solid #707070;
+    cursor: pointer;
 }

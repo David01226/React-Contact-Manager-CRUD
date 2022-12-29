@@ -1,7 +1,9 @@
 export interface IUser {
     id: number;
     name: string;
-    email: string
+    email: string;
+    tel: string;
+    company: string;
 }
 
 export enum ApiStatus {
@@ -22,6 +24,8 @@ export interface IUserState {
 export interface IUserForm {
     name : string;
     email : string;
+    tel: string;
+    company: string;
 }
 
 export interface IUpdateUserActionProps {

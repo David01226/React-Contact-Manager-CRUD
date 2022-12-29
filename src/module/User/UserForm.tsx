@@ -17,6 +17,8 @@ const UserForm = (props: IProps) => {
     const { isEditForm } = props
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
+    const [tel, setTel] = useState("")
+    const [company, setCompany] = useState("")
 
     const params = useParams();
     const userIdToEdit = useRef(parseInt(params.id || ""))
@@ -29,6 +31,8 @@ const UserForm = (props: IProps) => {
             if (userData.length) {
                 setName(userData[0].name);
                 setEmail(userData[0].email);
+                setTel(userData[0].tel);
+                setCompany(userData[0].company);
             }
         }
     }, [isEditForm])
@@ -39,14 +43,14 @@ const UserForm = (props: IProps) => {
     const onSubmitForm = (e: React.FormEvent) => {
         e.preventDefault();
 
-        const data : IUserForm = { name, email};
+        const data : IUserForm = { name, email, tel, company};
 
-        if(name && email) {
+        if(name && email && tel && company) {
             if(isEditForm) {
                 const dirtyFormData : IUpdateUserActionProps = {id:userIdToEdit.current, data}
                 dispatch(updateUserAction(dirtyFormData))
             } else {
-                const data : IUserForm = { name, email};
+                const data : IUserForm = { name, email, tel, company};
                 dispatch(createUserAction(data));
             } 
         } else {
@@ -60,20 +64,34 @@ const UserForm = (props: IProps) => {
         if (createUserFormStatus === ApiStatus.success) {
             setName("")
             setEmail("")
+            setTel("")
+            setCompany("")
             dispatch(resetCreateListStatus());
         }
     }, [createUserFormStatus])
 
     return (
         <div className={Style.container}>
+            <div className={Style["contact-img"]}>
+                <img src="/profile-img.png" alt="" />
+                <img className={Style["edit-profile-img"]} src="/edit-profile-img.png" alt="" />
+            </div>
+
             <form className={Style.form} onSubmit={onSubmitForm}>
-                <Input label='Name' value={name} onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                <Input placeholder ='Enter Name' label='Name' value={name} onChange={(e: ChangeEvent<HTMLInputElement>) => {
                     setName(e.target.value)
-                    console.log(name)
                 }} />
 
-                <Input label='Email' value={email} type='email' onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                <Input placeholder ='Enter Email' label='Email' value={email} type='email' onChange={(e: ChangeEvent<HTMLInputElement>) => {
                     setEmail(e.target.value)
+                }} />
+
+                <Input placeholder ='Enter Telephone Number' label='Tel' value={tel} onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                    setTel(e.target.value)
+                }} />
+
+                <Input placeholder ='Enter Company' label='Company' value={company} onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                    setCompany(e.target.value)
                 }} />
 
                 <div className={Style["btn-wrapper"]}>

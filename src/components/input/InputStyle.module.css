@@ -1,9 +1,25 @@
 .container {
     margin: 5px 5px; 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+label {
+    font-size: 17px;
+    color: #115D75;
+    font-weight: bold;
 }
 
 .input {
     width: 100%;
-    height: 25px;
-    padding-left: 10px;
+    max-width: 280px;
+    height: 38px;
+    border-radius: 10px;
+    font-size: 17px;
+    padding: 0 10px 0 10px;
+    box-sizing: border-box;
+    color: #115D75;
+
 }
