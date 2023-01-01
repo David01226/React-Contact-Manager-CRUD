@@ -1,3 +1,7 @@
+![Contact_manager_sample](https://user-images.githubusercontent.com/90648825/210056444-9a77a0de-1846-46f0-b55a-b42abc5d4f3c.PNG)
+
+![Contact_manager_sample2](https://user-images.githubusercontent.com/90648825/210056634-60113e14-3084-4fad-8d4b-76b338a10f96.PNG)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
