@@ -11,7 +11,7 @@ const Layout = () => {
                 <header>Contact Manager</header>
             </div>
             <div className={Style["header-bottom"]}>
-                <input className={Style["searchbar"]} type="text" placeholder='Search' />
+                {/* <input className={Style["searchbar"]} type="text" placeholder='Search' /> */}
                 <GlobalNav />
             </div>
         </div>

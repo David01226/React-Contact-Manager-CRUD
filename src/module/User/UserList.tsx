@@ -21,13 +21,6 @@ const UserList = () => {
 
     return (
         <div className={Style["contact-container"]}>
-            
-                {/* <tr>
-                    <th>Sr. No</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Action</th>
-                </tr> */}
                 
                 {listStatus === ApiStatus.loading && <tbody>List is loading</tbody>}
 
@@ -65,19 +58,6 @@ const UserList = () => {
 
                             </div>
 
-                            // <tr>
-                            //     <td>{index + 1}</td>
-                            //     <td>{user.name}</td>
-                            //     <td>{user.email}</td>
-                            //     <td>
-                            //         <div>
-                            //             <input type="button" value="View" onClick={() => {setUserDataToView(user);}}/>
-                            //             <input type="button" value="Edit" onClick={() => {navigator(`/edit/${user.id}`)}}/>
-                            //             <input type="button" value="Delete" onClick={() => {dispatch(deleteUserAction(user.id));}}/>
-                            //         </div>
-                            //     </td>
-                                
-                            // </tr>
                         );
                     }) }
 
@@ -95,6 +75,12 @@ const UserList = () => {
                         </div>
                         <div>
                             <label> Email : {userDataToView.email}</label>
+                        </div>
+                        <div>
+                            <label> Telephone No : {userDataToView.tel}</label>
+                        </div>
+                        <div>
+                            <label> Company : {userDataToView.company}</label>
                         </div>
                     </div>
                 </Modal>
